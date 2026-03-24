@@ -114,7 +114,7 @@ print(rectangle_2.area())
 а при вызове __init__ — Инициализация логгера.
 ======================================
 '''
-class Loger:
+class Logger:
     instance = None
     def __new__(cls, *args, **kwargs):
         print('Создание логгера')
@@ -124,8 +124,8 @@ class Loger:
     def __init__(self):
         print('Инициализация логгера')
 
-logger = Loger()
-logger_2 = Loger()
+logger = Logger()
+logger_2 = Logger()
 print(id(logger))
 print(id(logger_2))
 
