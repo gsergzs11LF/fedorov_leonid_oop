@@ -11,14 +11,14 @@ print(data.__secret)      # ошибка
 print(data.get_secret())  # "пароль123"
 ======================================
 '''
-from curses.ascii import isalpha, isdigit
+
 
 # class SecureData:
 #     def __init__(self, secret):
 #         self.__secret = secret
 #
 #     def __getattribute__(self, item):
-#         if item == '__secret':
+#         if item == '_SecureData__secret':
 #             raise ValueError ('Значение засекречено')
 #         return object.__getattribute__(self, item)
 #
@@ -113,7 +113,7 @@ e.salary = -100   # ❌ ValueError
 #         return self.__salary
 #     @salary.setter
 #     def salary(self, value):
-#         if value < 0:
+#         if value <= 0:
 #             raise ValueError('Зарплата не может быть меньше нуля')
 #         self.__salary = value
 #
