@@ -63,3 +63,4 @@ class ProductClient(BaseAPIClient):
 
 client = ProductClient()
 client.request('/product')
+

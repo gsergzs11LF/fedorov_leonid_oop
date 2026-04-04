@@ -28,3 +28,4 @@ class Logger:
 def test_example():
     print('Выполняется текст')
 test_example()
+
