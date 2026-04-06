@@ -52,8 +52,8 @@ page.find("Зима")
 ======================================
 '''
 class BasePage:
-    def __init__(self):
-        self.page_text = 'Зима'
+    def __init__(self, page_text):
+        self.page_text = page_text
 
     def open(self, url: str):
         print(f'Открыта страница "{url}"')
@@ -63,7 +63,7 @@ class LoginPage(BasePage):
         if text in self.page_text:
             print(f'На странице найден текст: "{text}"')
 
-page = LoginPage()
+page = LoginPage('Зима')
 print(page.page_text)
 page.open("https://example.com/login")
 page.find("Зима")
@@ -204,12 +204,12 @@ logger.log("Login successful")
 '''
 class Logger:
     def log(self, msg):
-        print('[LOG] Login successful')
+        print(f'[LOG] {msg}')
 
 class HTMLLogger(Logger):
     def log(self, msg):
         super().log(msg)
-        print("<p>Login successful</p>")
+        print(f"<p>{msg}</p>")
 
 logger = HTMLLogger()
-logger.log("Login successful")
+logger.log("Login successful123123123")
