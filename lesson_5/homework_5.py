@@ -22,7 +22,7 @@ class LengthValidator():
 
 validator = LengthValidator(3, 10)
 print(validator("python"))  # True
-print(validator("hi"))      # ValueError
+print(validator("hiiii"))      # ValueError
 
 """
 ======================================
@@ -67,8 +67,8 @@ class HasText:
 
 # t = HasText('обучение')
 # print(t('Я прохожу обучение'))
-assert HasText("Success")("Test passed: Success")
-assert HasText("Error")("All OK")
+assert HasText("Success")("Test passed: Success") is True
+assert HasText("Error")("All OK") is False
 
 """
 ======================================
@@ -112,7 +112,7 @@ class TestUser:
         self.name = name
         self.email = email
     def __repr__(self):
-        return f"<TestUser id={self.u_id} name='{self.name}' email='{self.email}' >"
+        return f"<TestUser id={self.u_id} name='{self.name}' email='{self.email}'>"
 
 user = TestUser(12, "Daniil", "daniil@example.com")
 print(user)
