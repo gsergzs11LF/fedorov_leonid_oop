@@ -38,14 +38,14 @@ import math
 В случае ошибки возвращай строку "Ошибка в inner".
 ======================================
 '''
-# def inner():
-#     try:
-#         return 10 / 0
-#     except ZeroDivisionError:
-#         print("Ошибка в inner")
-# def outer():
-#     return inner()
-# outer()
+def inner():
+    try:
+        return 10 / 0
+    except ZeroDivisionError:
+        return "Ошибка в inner"
+def outer():
+    return inner()
+outer()
 '''
 ======================================
 4. Сделай так:
@@ -186,33 +186,31 @@ DivisionByZeroError
 откат при ошибке.
 ======================================
 '''
-# class BackupList:
-#     def __init__(self, lst):
-#         self.lst = lst
-#
-#     def __enter__(self):
-#         self.copy_lst = self.lst.copy()
-#         return self
-#
-#     def append_lst_str(self, value):
-#         if not isinstance(value, str):
-#             raise ValueError('В лист можно добавить только строку')
-#         self.lst.append(value)
-#
-#     def __exit__(self, exc_type, exc_val, exc_tb):
-#         if exc_type is None:
-#             print('Ошибок не было, список успешно сохранен')
-#         else:
-#             print('Список сохранить не удалось')
-#             self.lst.clear()
-#             self.lst.extend(self.copy_lst)
-#             print(f"Ошибка: {exc_type.__name__}: {exc_val}")
-#         return True
-#
-# lst_1 = ['test', 'test1', 1, 'test 2']
-# with BackupList(lst_1) as b:
-#     b.append_lst_str(1)
-# print(lst_1)
+class BackupList:
+
+    def __init__(self, lst):
+        self.lst = lst
+
+    def __enter__(self):
+        self._backup = self.lst.copy()
+        return self.lst
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+
+        if exc_type is not None:
+            self.lst.clear()
+            self.lst.extend(self._backup)
+            print("Ошибка произошла, список восстановлен")
+
+        else:
+            print("Изменения сохранены")
+
+        return False
+lst = [1, 2, 3]
+
+with BackupList(lst) as l:
+    l.append(4)
+print(lst)
 
 '''
 ======================================
@@ -230,12 +228,13 @@ class Timer:
         start = time.time()
         result = self.func(*args, **kwargs)
         end = time.time()
-        print(end - start)
+        print(f"Результат: {result}")
+        print(f"Время выполнения: {end - start}")
         return result
 
 @Timer
 def test():
     time.sleep(1)
-    print('Что-то')
+    return 2+2
 
 test()
