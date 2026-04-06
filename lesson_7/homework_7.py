@@ -218,7 +218,7 @@ except ValueError:
 """
 try:
     inp = input('Введи два числа через пробел:')
-    x, y = inp.split(' ')
+    x, y = inp.split()
     z = int(x) / int(y)
     print('Результат деления:', z)
 except ZeroDivisionError:
@@ -242,7 +242,7 @@ except ZeroDivisionError:
         print("На ноль делить нельзя!")
 except ValueError:
     print("Ошибка ввода: введите два числа через пробел")
-except:
+except Exception:
     print('Произошла неизвестная ошибка')
 
 """
